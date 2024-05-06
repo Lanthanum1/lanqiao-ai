@@ -1,0 +1,228 @@
+{
+    "february": {
+        "2-1": {
+            "food": 2456,
+            "clothes": 1348,
+            "vehicle": 2326,
+            "sports": 385,
+            "loans": 642,
+            "other": 57
+        },
+        "2-2": {
+            "food": 761,
+            "clothes": 2523,
+            "vehicle": 1349,
+            "sports": 444,
+            "loans": 227,
+            "other": 2530
+        },
+        "2-3": {
+            "food": 669,
+            "clothes": 1793,
+            "vehicle": 1059,
+            "sports": 387,
+            "loans": 524,
+            "other": 3511
+        },
+        "2-4": {
+            "food": 2267,
+            "clothes": 3869,
+            "vehicle": 2430,
+            "sports": 621,
+            "loans": 302,
+            "other": 3015
+        },
+        "2-5": {
+            "food": 3976,
+            "clothes": 1446,
+            "vehicle": 2861,
+            "sports": 3922,
+            "loans": 3051,
+            "other": 1467
+        },
+        "2-6": {
+            "food": 2701,
+            "clothes": 2642,
+            "vehicle": 2661,
+            "sports": 1792,
+            "loans": 3010,
+            "other": 2393
+        },
+        "2-7": {
+            "food": 203,
+            "clothes": 1234,
+            "vehicle": 2173,
+            "sports": 1471,
+            "loans": 866,
+            "other": 3439
+        },
+        "2-8": {
+            "food": 1083,
+            "clothes": 2966,
+            "vehicle": 109,
+            "sports": 1049,
+            "loans": 3486,
+            "other": 3912
+        },
+        "2-9": {
+            "food": 3659,
+            "clothes": 2757,
+            "vehicle": 769,
+            "sports": 3920,
+            "loans": 1354,
+            "other": 1914
+        },
+        "2-10": {
+            "food": 3266,
+            "clothes": 3917,
+            "vehicle": 1048,
+            "sports": 552,
+            "loans": 2285,
+            "other": 1339
+        },
+        "2-11": {
+            "food": 877,
+            "clothes": 3026,
+            "vehicle": 863,
+            "sports": 3588,
+            "loans": 3243,
+            "other": 3095
+        },
+        "2-12": {
+            "food": 1946,
+            "clothes": 1133,
+            "vehicle": 208,
+            "sports": 3603,
+            "loans": 566,
+            "other": 90
+        },
+        "2-13": {
+            "food": 2470,
+            "clothes": 3330,
+            "vehicle": 1104,
+            "sports": 938,
+            "loans": 2774,
+            "other": 2407
+        },
+        "2-14": {
+            "food": 3772,
+            "clothes": 3693,
+            "vehicle": 460,
+            "sports": 108,
+            "loans": 498,
+            "other": 3513
+        },
+        "2-15": {
+            "food": 2989,
+            "clothes": 3468,
+            "vehicle": 964,
+            "sports": 553,
+            "loans": 2837,
+            "other": 1367
+        },
+        "2-16": {
+            "food": 1446,
+            "clothes": 2964,
+            "vehicle": 222,
+            "sports": 3554,
+            "loans": 3877,
+            "other": 1973
+        },
+        "2-17": {
+            "food": 58,
+            "clothes": 3088,
+            "vehicle": 650,
+            "sports": 3890,
+            "loans": 818,
+            "other": 3184
+        },
+        "2-18": {
+            "food": 420,
+            "clothes": 3531,
+            "vehicle": 477,
+            "sports": 2447,
+            "loans": 3981,
+            "other": 233
+        },
+        "2-19": {
+            "food": 3620,
+            "clothes": 2453,
+            "vehicle": 776,
+            "sports": 2533,
+            "loans": 134,
+            "other": 3539
+        },
+        "2-20": {
+            "food": 3218,
+            "clothes": 2735,
+            "vehicle": 2631,
+            "sports": 304,
+            "loans": 1823,
+            "other": 251
+        },
+        "2-21": {
+            "food": 2585,
+            "clothes": 260,
+            "vehicle": 1466,
+            "sports": 820,
+            "loans": 816,
+            "other": 2906
+        },
+        "2-22": {
+            "food": 3280,
+            "clothes": 3303,
+            "vehicle": 1760,
+            "sports": 759,
+            "loans": 1982,
+            "other": 1645
+        },
+        "2-23": {
+            "food": 718,
+            "clothes": 2005,
+            "vehicle": 2328,
+            "sports": 1238,
+            "loans": 3928,
+            "other": 3216
+        },
+        "2-24": {
+            "food": 3409,
+            "clothes": 2971,
+            "vehicle": 1383,
+            "sports": 1710,
+            "loans": 1660,
+            "other": 3333
+        },
+        "2-25": {
+            "food": 933,
+            "clothes": 3155,
+            "vehicle": 3217,
+            "sports": 722,
+            "loans": 2502,
+            "other": 2104
+        },
+        "2-26": {
+            "food": 558,
+            "clothes": 3930,
+            "vehicle": 2945,
+            "sports": 45,
+            "loans": 2206,
+            "other": 1205
+        },
+        "2-27": {
+            "food": 3111,
+            "clothes": 1905,
+            "vehicle": 2763,
+            "sports": 38,
+            "loans": 2240,
+            "other": 1916
+        },
+        "2-28": {
+            "food": 1495,
+            "clothes": 1931,
+            "vehicle": 1089,
+            "sports": 2016,
+            "loans": 592,
+            "other": 2915
+        }
+    }
+}
