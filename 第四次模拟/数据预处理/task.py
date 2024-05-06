@@ -35,9 +35,9 @@ def document_merge() -> dict:
     #         first[5]: mid_data[5],
     #         first[6]: mid_data[6],
     #     }
-    May = {mid_data[0]: {first[j]: mid_data[j] for j in range(1, 7)} 
+    May = {level_data[0]: {first[j]: level_data[j] for j in range(1, 7)} 
        for i in range(1, 32) 
-       for mid_data in [html_file.columns.get_level_values(i).values]}
+       for level_data in [html_file.columns.get_level_values(i).values]}
 
     data["january"] = January
     data["february"] = February
