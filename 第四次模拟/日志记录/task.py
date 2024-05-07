@@ -120,6 +120,7 @@ def evaluate(model, iterator, criterion):
 
 def run():
     logging.basicConfig(filename='training.log', level=logging.INFO, format='%(message)s')
+    # format='%(message)s': 定义了日志消息的格式。这里只包含message部分，意味着日志输出将只显示实际的消息内容，而不包括时间戳、日志级别等其他通常伴随的信息。
     logger = logging.getLogger()
     model = TextClassifier()
     train_loader, val_loader = get_data_loaders()
