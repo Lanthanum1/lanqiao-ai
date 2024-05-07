@@ -33,12 +33,12 @@ x_train, x_test, y_train, y_test = train_test_split(
 # 如果省略random_state或者设置为None，那么在每次调用函数时，由于使用了不同的随机种子，数据的划分将会不同，导致结果具有随机性。
 
 clf = CatBoostClassifier(
-    iterations=10,
+    iterations=10, # 5也能通过测试
     learning_rate=0.1,
     depth=6,
     loss_function="Logloss",
-    # logging_level="Silent",
-    logging_level="Verbose",
+    logging_level="Silent",
+    # logging_level="Verbose",
 )
 clf.fit(x_train, y_train)
 # y_pred = clf.predict(x_test)
