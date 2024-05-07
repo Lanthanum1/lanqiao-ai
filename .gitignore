@@ -1,2 +1,13 @@
 .devcontainer/devcontainer.json
 .vscode/PythonImportHelper-v2-Completion.json
+第四次模拟/预训练模型应用/catboost_info/catboost_training.json
+第四次模拟/预训练模型应用/catboost_info/learn_error.tsv
+第四次模拟/预训练模型应用/catboost_info/time_left.tsv
+第四次模拟/预训练模型应用/catboost_info/learn/events.out.tfevents
+第四次模拟/预训练模型应用/catboost_info/tmp/cat_feature_index.8c052b6a-2ed997e2-2f17f378-dea776dd.tmp
+第四次模拟/预训练模型应用/test.json
+第四次模拟/预训练模型应用/xception_train.json
+第四次模拟/预训练模型应用/resnet_train.json
+第四次模拟/预训练模型应用/inception_train.json
+第四次模拟/预训练模型应用/catboost_info/tmp/cat_feature_index.b42e987a-d4ae8488-a8a5e9d-c65d8769.tmp
+第四次模拟/预训练模型应用/catboost_info/tmp/cat_feature_index.f9ae3b18-b4eecd76-dd48f81f-7e5d29d2.tmp
