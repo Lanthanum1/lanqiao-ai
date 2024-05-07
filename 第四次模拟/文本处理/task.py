@@ -8,6 +8,7 @@ class MakeDataset(Dataset):
 
     def __init__(self):
         self.data = pd.read_csv('data.csv')[['text_id', 'text']].values
+        # 这个.values就是把对象转换为array,不能缺少，但是至于[['text_id', 'text']]因为原本csv中只有这两列，实际上是可以缺省的
         self.locs = open('loc.txt', 'r').read().split('\n')
         self.pers = open('per.txt', 'r').read().split('\n')
 
@@ -24,6 +25,7 @@ class MakeDataset(Dataset):
 
         # TODO
         match_loc=[]
+        
         # 遍历每个地点，如果text中包含该地点，则将该地点加入match_loc
         for loc in self.locs:
             if loc in text:
