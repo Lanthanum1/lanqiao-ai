@@ -1,0 +1,30 @@
+Epoch: 1
+Train Loss: 1.507
+Val Loss: 0.814 | Val Accuracy: 50.00% | Precision: 0.438 | Recall: 0.875 | F1: 0.583
+Epoch: 2
+Train Loss: 0.704
+Val Loss: 0.748 | Val Accuracy: 60.00% | Precision: 0.500 | Recall: 0.625 | F1: 0.556
+Epoch: 3
+Train Loss: 0.494
+Val Loss: 0.809 | Val Accuracy: 55.00% | Precision: 0.000 | Recall: 0.000 | F1: 0.000
+Epoch: 4
+Train Loss: 0.352
+Val Loss: 0.963 | Val Accuracy: 50.00% | Precision: 0.429 | Recall: 0.750 | F1: 0.545
+Epoch: 5
+Train Loss: 0.222
+Val Loss: 1.175 | Val Accuracy: 55.00% | Precision: 0.467 | Recall: 0.875 | F1: 0.609
+Epoch: 6
+Train Loss: 0.104
+Val Loss: 1.207 | Val Accuracy: 50.00% | Precision: 0.417 | Recall: 0.625 | F1: 0.500
+Epoch: 7
+Train Loss: 0.046
+Val Loss: 1.400 | Val Accuracy: 60.00% | Precision: 0.500 | Recall: 0.500 | F1: 0.500
+Epoch: 8
+Train Loss: 0.022
+Val Loss: 1.631 | Val Accuracy: 60.00% | Precision: 0.500 | Recall: 0.500 | F1: 0.500
+Epoch: 9
+Train Loss: 0.015
+Val Loss: 1.865 | Val Accuracy: 65.00% | Precision: 0.556 | Recall: 0.625 | F1: 0.588
+Epoch: 10
+Train Loss: 0.006
+Val Loss: 2.163 | Val Accuracy: 55.00% | Precision: 0.455 | Recall: 0.625 | F1: 0.526
