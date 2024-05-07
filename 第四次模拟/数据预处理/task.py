@@ -24,7 +24,11 @@ def document_merge() -> dict:
         February[mid_data] = json_file["february"][mid_data]
 
     html_file = pd.read_html("./2022_may.html")[0]
+    # [0]是因为html中可能会有多个表格，所以要指定第几个表格
+    
     first = html_file.columns.get_level_values(0).values
+    # html_file.columns对象每一个元素都是表格的一个列，get_level_values(i)获取第i行的值
+    
     # for i in range(1, 32):
     #     mid_data = html_file.columns.get_level_values(i).values
     #     May[mid_data[0]] = {
