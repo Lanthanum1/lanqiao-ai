@@ -33,24 +33,62 @@ class TextClassifier(nn.Module):
 
 
 def convert():
-    # TODO
+    # 加载PyTorch模型
     model = TextClassifier()
-    model.load_state_dict(torch.load("model.pt"))
+    model.load_state_dict(torch.load('model.pt'))
     model.eval()
-    # 定义输入张量（示例： batch_size=2, seq_len=5）
-    input_tensor = torch.randint(0, 1000, (1, 5)).long()
 
-    torch.onnx.export(model, input_tensor, "text_classifier.onnx")
+    # input_shape = (256, 1)
+    # 创建一个样本输入张量。尺寸应匹配模型期望的输入。
+    # x = torch.randn(1, *input_shape)
+    x = torch.ones([1,1], dtype=torch.long)
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    x = x.to(device)
+    # 导出模型
+    torch.onnx.export(model,               # 模型实例
+                      x,                   # 模型输入的样本张量
+                      "text_classifier.onnx",  # 保存的模型名
+                      export_params=True,  # 导出模型中的参数和缓存
+                      opset_version=11,    # 使用的 ONNX 版本
+                      do_constant_folding=True,  # 是否执行常量折叠优化
+                      input_names = ['input'],   # 模型输入节点的名字
+                      output_names = ['output'], # 模型输出节点的名字
+                      dynamic_axes={'input': {0: 'length'}, 'output': {0: 'length'}}) # 动态轴的设置
 
 
-def inference(model_path, input):
-    # TODO
-    session = ort.InferenceSession(model_path)
-    input_name = session.get_inputs()[0].name
-    input_data = np.array(input, dtype=np.int64).reshape(1, -1)
-    output = session.run(None, {input_name: input_data})
-    result = output[0].flatten().tolist()
-    return result
+# def inference(model_path, input):
+#     # 初始化ONNX运行时
+#     ort_session = ort.InferenceSession(model_path)
+
+#     # ONNX模型期望建模输入的形状与名字
+#     ort_inputs = {ort_session.get_inputs()[0].name: np.array(input, dtype=np.int64).reshape(1, -1)}
+#     ort_outs = ort_session.run(None, ort_inputs)
+
+#     # 返回结果
+#     result = ort_outs[0].tolist()
+#     return result
+
+def inference(model_path, input_sequence):
+    # 将输入序列转换为形状为 (len(input_sequence), 1) 的张量
+    input_tensor = torch.tensor(input_sequence).unsqueeze(1)
+
+    # 将PyTorch张量转换为NumPy数组，因为ONNX运行时需要NumPy数组作为输入
+    numpy_input = input_tensor.numpy()
+
+    # 初始化ONNX运行时
+    ort_session = ort.InferenceSession(model_path)
+
+    # ONNX模型期望建模输入的形状与名字
+    ort_inputs = {ort_session.get_inputs()[0].name: numpy_input}
+
+    # ONNX运行时执行推理
+    ort_outs = ort_session.run(None, ort_inputs)
+
+    # 返回结果
+    result = ort_outs[0].tolist()
+    return result 
+
 
 
 def main():
@@ -64,7 +102,16 @@ if __name__ == "__main__":
     # model = TextClassifier() 
     # model.load_state_dict(torch.load('model.pt'))
     # model.eval()
+    
+    
     # output = model(torch.ones([256, 1], dtype=torch.long))
     # print(output.detach().numpy().tolist())
+    
+    
+    # input_sequence = [101, 304, 993, 108, 102]
+    # input_tensor = torch.tensor(input_sequence, dtype=torch.long).unsqueeze(1)
+    # output = model(input_tensor)
+    # print(output.detach().numpy().tolist())
+
     main()
 # task-end
