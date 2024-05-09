@@ -1,87 +1,63 @@
-import numpy as np
-import torch.nn as nn
-from torch.utils.data import Dataset, DataLoader
-import torch
-import matplotlib.pyplot as plt
+import os
+import pandas as pd
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics import accuracy_score
+from sklearn.linear_model import LogisticRegression
 
 
-def create_dict():
-    word = {}
-    with open('news_train.txt', encoding='UTF-8') as f:
-        sentences = f.readlines()
-        f.close()
 
-        for sentence in sentences:
-            sentence = sentence.split(' ')
-            for w in sentence:
-                if w not in word.keys():
-                    word[w] = len(word)
+# 数据预处理
+def preprocess_data(text_file, label_file):
+    texts = []
+    with open(text_file, 'r') as f_text:
+        for line in f_text:
+            texts.append(line.strip())
+    if text_file == "news_train.txt":
+        labels = []
+        with open(label_file, 'r') as f_label:
+            for line in f_label:
+                labels.append(int(line.strip()))
 
-    return sentences, word
+        return texts, labels
+    else:
+        return texts
 
-
-class Model(nn.Module):
-    def __init__(self, num_classes):
-        super().__init__()
-        self.embedding = nn.Embedding(30000, 128)
-        self.rnn = nn.LSTM(128, 512)
-        self.fc = nn.Linear(512, num_classes)
-
-    def forward(self, x):
-        x = self.embedding(x)
-        x = x.permute(1, 0, 2)
-        packed_output, (hidden, cell) = self.rnn(x)
-        output = self.fc(hidden.squeeze(0))
-        return output
+# 训练模型
+def train_model(X_train, y_train):
+    vectorizer = CountVectorizer()
+    X_train_vec = vectorizer.fit_transform(X_train)
+    # classifier = MultinomialNB()
+    classifier = LogisticRegression(penalty='l2', solver='liblinear')  # 使用L2正则化的逻辑回归
+    classifier.fit(X_train_vec, y_train)
+    return classifier, X_train_vec, vectorizer
 
 
-def get_token(sentence, word_dict):
-    global max_length
-    token = []
-    sentence = sentence.split(' ')
-    for w in sentence:
-        if w in word_dict.keys():
-            token.append(word_dict[w])
-        else:
-            token.append(len(word_dict))
-    return np.array(token)
+# 预测并保存结果
+def predict_and_save(model, vectorizer, test_file, output_file):
+    test_texts = []
+    with open(test_file, 'r') as f_test:
+        for line in f_test:
+            test_texts.append(line.strip())
 
+    X_test_vec = vectorizer.transform(test_texts)
+    predictions = model.predict(X_test_vec)
 
-class NewsDataset(Dataset):
-    def __init__(self, sentences, label=None, type_='train', word_dict=None):
-        super().__init__()
-        self.sentences = sentences
-        self.label = label
-        self.type = type_
-        self.word_dict = word_dict
+    with open(output_file, 'w') as f:
+        for pred in predictions:
+            f.write(str(int(pred)) + '\n')
+    
 
-    def __getitem__(self, item):
-        if self.type == 'train':
-            return get_token(self.sentences[item], self.word_dict), self.label[item]
-        return get_token(self.sentences[item], self.word_dict)
+if __name__ == "__main__":
+    X_train, y_train = preprocess_data('news_train.txt', 'label_newstrain.txt')
+    X_test = preprocess_data('news_test.txt', None)[0]
 
-    def __len__(self):
-        return len(self.sentences)
+    model, X_train_vec, vectorizer = train_model(X_train, y_train)
 
+    # 验证准确率
+    y_pred_train = model.predict(X_train_vec)
+    accuracy_train = accuracy_score(y_train, y_pred_train)
+    # print(f"Training Accuracy: {accuracy_train}")
 
-def train(model, dataloader):
-    epochs = 10
-    loss_fn = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
-    losses = []
-
-    for e in range(epochs):
-        epoch_loss = 0
-        for i, (features, labels) in enumerate(dataloader):
-            features = features.cuda()
-            labels = labels.cuda()
-
-            optimizer.zero_grad()
-            outputs = model(features)
-            loss = loss_fn(outputs, labels)
-            loss.backward()
-            optimizer.step()
-            epoch_loss += loss.item()
-
-        losses.append(epoch_loss / (i + 1))
-        print(f'Epoch {e + 1}/{epochs}, Loss: {epoch_loss / (i + 1)}')
+    # 预测并保存结果
+    predict_and_save(model, vectorizer, 'news_test.txt', 'pred_test.txt')
