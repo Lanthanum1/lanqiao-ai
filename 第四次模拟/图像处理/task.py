@@ -25,7 +25,7 @@ def img_processor(data_path, dst_size=(224, 224)):
     endx = startx + dst_size[1]  # 16 + 224 = 240
     endy = starty + dst_size[0]
 
-    # 使用索引提取的方式完成图像截取[16,16:240,240]
+    # 使用索引提取的方式完成图像截取[16:240,16:240]
     image = image_src[starty:endy, startx:endx]
 
     # 进行标准化
