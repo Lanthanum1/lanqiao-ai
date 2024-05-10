@@ -1,5 +1,4 @@
 # task-start
-# 重复运行和重复提交会失败，因为每次运行都改变了原来的图片
 import numpy as np
 import pandas as pd
 import json
@@ -17,21 +16,21 @@ def img_processor(data_path, dst_size=(224, 224)):
     # 调整当前image_src的尺寸
     image = cv2.resize(image_src, (256, 256))
 
-    # 想象从一个大正方形中剪出一个小正方形，大正方形的边长减去小正方形的边长正是左右两边的差值之和，除以二就是一边的差值
-    # 假设图像尺寸为256*256，目标尺寸为224*224，那么图像调整的初始像素及结束像素值分别为(256-224)//2 = 16 和 初始像素 + 224 = 240
     # 计算图像调整的初始像素及结束像素值，注意opencv的像素点位置坐标为先行后列(y,x)且初始为0
     startx = (image.shape[1] - dst_size[1]) // 2  # (256-224)//2 = 16
     starty = (image.shape[0] - dst_size[0]) // 2
     endx = startx + dst_size[1]  # 16 + 224 = 240
     endy = starty + dst_size[0]
 
-    # 使用索引提取的方式完成图像截取[16:240,16:240]
+    # 使用索引提取的方式完成图像截取[16,16:240,240]
     image = image_src[starty:endy, startx:endx]
 
     # 进行标准化
+
     image = (image - _mean) / _std
 
-    # 写回
+    # ！！！一定要用处理后的image保存替换原图像，可能绝大多数未能通过都在这一步，编题人就不能说清楚要求吗，
+    # 提交了50+次不通过 T_T
     cv2.imwrite(data_path, image)
 
     return image_src, image, (startx, starty)
