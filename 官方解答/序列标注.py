@@ -18,3 +18,5 @@ for d in data:
     processed_data.append({'text': text, 'label': label, 'text_id': text_id})
 
 json.dump(processed_data, open('ner_processed.json', 'w', encoding='utf-8'),ensure_ascii=False)
+
+

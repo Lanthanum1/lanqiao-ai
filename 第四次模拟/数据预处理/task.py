@@ -1,11 +1,11 @@
 # conda install openpyxl lxml
 import pandas as pd
-
+import json
 
 def document_merge() -> dict:
     data = {}
     January, February, May = {}, {}, {}
-    excel_file = pd.read_excel("./2022_january.xlsx")
+    excel_file = pd.read_excel("/home/project/2022_january.xlsx")
     # for i in range(31):
     #     January["1-"+str(excel_file.iloc[i+4,2].day)] ={excel_file.iloc[3,3]:excel_file.iloc[i+4,3],excel_file.iloc[3,4]:excel_file.iloc[i+4,4],excel_file.iloc[3,5]:excel_file.iloc[i+4,5],excel_file.iloc[3,6]:excel_file.iloc[i+4,6],excel_file.iloc[3,7]:excel_file.iloc[i+4,7],excel_file.iloc[3,8]:excel_file.iloc[i+4,8]}
     
@@ -18,12 +18,13 @@ def document_merge() -> dict:
 }
     
 
-    json_file = pd.read_json("./2022_february.json")
-    for i in range(1, 29):
-        mid_data = "2-" + str(i)
-        February[mid_data] = json_file["february"][mid_data]
+    # json_file = pd.read_json("/home/project/2022_february.json")
+    json_file = json.load(open("/home/project/2022_february.json"))
+    # for i in range(1, 29):
+    #     mid_data = "2-" + str(i)
+    #     February[mid_data] = json_file["february"][mid_data]
 
-    html_file = pd.read_html("./2022_may.html")[0]
+    html_file = pd.read_html("/home/project/2022_may.html")[0]
     # [0]是因为html中可能会有多个表格，所以要指定第几个表格
     
     first = html_file.columns.get_level_values(0).values
@@ -44,9 +45,9 @@ def document_merge() -> dict:
        for level_data in [html_file.columns.get_level_values(i).values]}
 
     data["january"] = January
-    data["february"] = February
+    data["february"] = json_file["february"]
     data["may"] = May
     return data
 
 
-print(document_merge())
+# print(document_merge())
