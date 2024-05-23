@@ -9,13 +9,24 @@ def document_merge() -> dict:
     # for i in range(31):
     #     January["1-"+str(excel_file.iloc[i+4,2].day)] ={excel_file.iloc[3,3]:excel_file.iloc[i+4,3],excel_file.iloc[3,4]:excel_file.iloc[i+4,4],excel_file.iloc[3,5]:excel_file.iloc[i+4,5],excel_file.iloc[3,6]:excel_file.iloc[i+4,6],excel_file.iloc[3,7]:excel_file.iloc[i+4,7],excel_file.iloc[3,8]:excel_file.iloc[i+4,8]}
     
-    January = {
-    f"1-{excel_file.iloc[i+4, 2].day}": {
-        excel_file.iloc[3, j]: excel_file.iloc[i+4, j]
-        for j in range(3, 9)
-    }
-    for i in range(31)
-}
+#     January = {
+#     f"1-{excel_file.iloc[i+4, 2].day}": {
+#         excel_file.iloc[3, j]: excel_file.iloc[i+4, j]
+#         for j in range(3, 9)
+#     }
+#     for i in range(31)
+# }
+    January = {}
+
+    for i in range(31):
+        # 初始化每日数据的字典
+        daily_data = {}
+        for j in range(3, 9):
+            # 从excel_file中提取数据并填充到daily_data字典中
+            daily_data[excel_file.iloc[3, j]] = excel_file.iloc[i + 4, j]
+        
+        # 使用日期作为键，daily_data作为值，添加到January字典中
+        January[f"1-{excel_file.iloc[i+4, 2].day}"] = daily_data
     
 
     # json_file = pd.read_json("/home/project/2022_february.json")
@@ -40,9 +51,18 @@ def document_merge() -> dict:
     #         first[5]: mid_data[5],
     #         first[6]: mid_data[6],
     #     }
-    May = {level_data[0]: {first[j]: level_data[j] for j in range(1, 7)} 
-       for i in range(1, 32) 
-       for level_data in [html_file.columns.get_level_values(i).values]}
+    # May = {level_data[0]: {first[j]: level_data[j] for j in range(1, 7)} 
+    #    for i in range(1, 32) 
+    #    for level_data in [html_file.columns.get_level_values(i).values]}
+    May = {}
+
+    for i in range(1, 32):
+        level_data = html_file.columns.get_level_values(i).values
+        May[level_data[0]] = {}
+        for j in range(1, 7):
+            May[level_data[0]][first[j]] = level_data[j]
+
+   
 
     data["january"] = January
     data["february"] = json_file["february"]
