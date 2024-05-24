@@ -41,6 +41,7 @@ class MakeDataset(Dataset):
             text = text.replace(per, rep_per)
             aug_info['pers'].append({"original":per, "replacement":rep_per})
             
+        # test
         
 
         return text, aug_info
