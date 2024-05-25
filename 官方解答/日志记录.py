@@ -92,7 +92,7 @@ def evaluate(model, iterator, criterion):
             # 如果传入的是一个列表，extend()会把那个列表的每个元素分别添加到原列表中。
     accuracy = correct_precisions / len(iterator.dataset)
     
-    precision, recall, f1, _ = precision_recall_fscore_support(all_labels, all_preds, average='binary')
+    precision, recall, f1, _ = precision_recall_fscore_support(y_true=all_labels, y_pred=all_preds, average='binary')
 
     return total_loss / len(iterator), accuracy, precision, recall, f1
 
